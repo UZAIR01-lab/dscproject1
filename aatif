@@ -1,0 +1,40 @@
+void lowStockAlert() {
+    int threshold; printf("Threshold: "); scanf("%d", &threshold);
+    int found = 0;
+    for (int i = 0; i < itemCount; i++)
+        if (inventory[i].quantity <= threshold) {
+            printf("LOW STOCK → ID: %d | %s | Qty: %d\n",
+                   inventory[i].id, inventory[i].name, inventory[i].quantity);
+            found = 1;
+        }
+    if (!found) puts("No items below threshold.");
+}
+
+/* ── main ── */
+int main() {
+    int choice;
+    do {
+        puts("\n=== Inventory Management ===");
+        puts("1. Add Item");
+        puts("2. Display All");
+        puts("3. Search Item");
+        puts("4. Update Item");
+        puts("5. Delete Item");
+        puts("6. Low Stock Alert");
+        puts("0. Exit");
+        printf("Choice: "); scanf("%d", &choice);
+
+        switch (choice) {
+            case 1: addItem();       break;
+            case 2: displayAll();    break;
+            case 3: searchItem();    break;
+            case 4: updateItem();    break;
+            case 5: deleteItem();    break;
+            case 6: lowStockAlert(); break;
+            case 0: puts("Bye!"); break;
+            default: puts("Invalid choice.");
+        }
+    } while (choice != 0);
+
+    return 0;
+}
